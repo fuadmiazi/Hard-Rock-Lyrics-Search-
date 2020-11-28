@@ -20,7 +20,7 @@ searchButton.addEventListener('click', () =>{
     // albumName.innerHTML = "";
     // middleText = "";
 
-    for(i=0; i<5; i++){
+    for(i=0; i<10; i++){
         var paraParent = document.getElementById("search-result");
         var songPara = document.createElement("p");
         songPara.setAttribute("class", "author lead");
@@ -62,7 +62,8 @@ function myFunction(number, word){
         .then(res => res.json())
         .then(lyrics => {
             const songLyrics = lyrics;
-            console.log(songLyrics);
+            const fullLyrics = document.getElementById("wholeLyrics");
+            fullLyrics.innerHTML = songLyrics;
         })
     })
 }
