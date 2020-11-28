@@ -16,19 +16,40 @@ searchButton.addEventListener('click', () =>{
     // songName.innerHTML = "";
     // albumName.innerHTML = "";
 
-    for(i=0; i<songArray; i++){
+    // songName.innerHTML = "";
+    // albumName.innerHTML = "";
+    // middleText = "";
+
+    for(i=0; i<5; i++){
         var paraParent = document.getElementById("search-result");
         var songPara = document.createElement("p");
+        songPara.setAttribute("class", "author lead");
         paraParent.appendChild(songPara);
         var songName = document.createElement("strong");
         songPara.appendChild(songName);
-        var middleText = document.createTextNode(" Album By ");
+        var middleText = document.createTextNode(" By ");
         songPara.appendChild(middleText);
         var albumName = document.createElement("strong");
         songPara.appendChild(albumName);
+        var lyricsButton = document.createElement("button");
+        lyricsButton.setAttribute("class", "btn btn-success");
+        lyricsButton.setAttribute("id", `lyrics-${i}`);
+        lyricsButton.setAttribute("onclick", `myFunction(${i})`);
+        lyricsButton.innerHTML = "Get Lyrics";
+        songPara.appendChild(lyricsButton);
         songName.innerHTML = songList[i].title;
-        albumName.innerHTML = songList[i].album.title;
+        albumName.innerHTML = songList[i].artist.name;
     }
     
 })
+
+    const lyricsApi = "https://api.lyrics.ovh/v1/";
+    function getLyrics(lyricId){
+        const getLyricsButton = document.getElementById(lyricId);
+        getLyricsButton.addEventListener("click")
+    }
+
 })
+
+
+//const artistName =  
