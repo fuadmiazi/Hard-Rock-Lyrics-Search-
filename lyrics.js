@@ -10,8 +10,8 @@ searchButton.addEventListener('click', () =>{
     .then(datas =>  {
     const songList = datas.data;
     console.log(songList);
-    var songArray = songList.length;
-    var paraParent, songPara, songName;
+    //var songArray = songList.length;
+    //var paraParent, songPara, songName;
     
     // songName.innerHTML = "";
     // albumName.innerHTML = "";
@@ -34,7 +34,7 @@ searchButton.addEventListener('click', () =>{
         var lyricsButton = document.createElement("button");
         lyricsButton.setAttribute("class", "btn btn-success");
         lyricsButton.setAttribute("id", `lyrics-${i}`);
-        lyricsButton.setAttribute("onclick", `myFunction(${i})`);
+        lyricsButton.setAttribute("onclick", `myFunction(${i},'${searchWord}')`);
         lyricsButton.innerHTML = "Get Lyrics";
         songPara.appendChild(lyricsButton);
         songName.innerHTML = songList[i].title;
@@ -43,13 +43,21 @@ searchButton.addEventListener('click', () =>{
     
 })
 
-    const lyricsApi = "https://api.lyrics.ovh/v1/";
-    function getLyrics(lyricId){
-        const getLyricsButton = document.getElementById(lyricId);
-        getLyricsButton.addEventListener("click")
-    }
 
 })
+
+function myFunction(number, word){
+    //console.log("It's working!" + number + word);
+    fetch(`${apiUrl}${word}`)
+    .then(res => res.json())
+    .then(datas => {
+        const songList = datas.data;
+        const songHeadline = document.getElementById("songTitle");
+        const artistName = songList[number].artist.name;
+        const songTitle = songList[number].title;
+        songHeadline.innerHTML = songTitle  + " - " + artistName;
+    })
+}
 
 
 //const artistName =  
