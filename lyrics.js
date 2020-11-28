@@ -46,6 +46,7 @@ searchButton.addEventListener('click', () =>{
 
 })
 
+const lyricsApi = 'https://api.lyrics.ovh/v1/';
 function myFunction(number, word){
     //console.log("It's working!" + number + word);
     fetch(`${apiUrl}${word}`)
@@ -56,6 +57,13 @@ function myFunction(number, word){
         const artistName = songList[number].artist.name;
         const songTitle = songList[number].title;
         songHeadline.innerHTML = songTitle  + " - " + artistName;
+
+        fetch(`${lyricsApi}${artistName}/${songTitle}`)
+        .then(res => res.json())
+        .then(lyrics => {
+            const songLyrics = lyrics;
+            console.log(songLyrics);
+        })
     })
 }
 
